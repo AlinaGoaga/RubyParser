@@ -1,16 +1,15 @@
-class Doc
+class Log
   attr_reader :list
 
-  def initialize
+  def initialize(document, parser_class = Parser)
+    @parser_class = parser_class
+    @document = document
     @list = {}
   end
 
-  def parse(document)
-    File.readlines(document).each do |line|
-      key, value = line.split(' ')
-      @list[key] = [] if @list[key].nil?
-      @list[key] << value
-    end
+  def add_webpages
+    parser = @parser_class.new
+    @list = parser.parse(@document)
   end
 
   def count_visits
