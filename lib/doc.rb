@@ -13,4 +13,8 @@ class Doc
     end
   end
 
+  def count_visits
+    @list.map { |key, value| [key, value.count] }.to_h
+  end
+
 end

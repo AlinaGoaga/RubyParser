@@ -17,4 +17,11 @@ describe Doc do
                              '/about/2' => ['382.335.626.855', '802.683.925.780', '200.017.277.774'])
     end
   end
-end 
+
+  describe '#count_visits' do
+    it 'counts the number of visits' do
+      doc.parse('./test.log')
+      expect(doc.count_visits).to eq('/help_page/1' => 2, '/contact' => 1, '/about' => 1, '/about/2' => 3)
+    end
+  end
+end
