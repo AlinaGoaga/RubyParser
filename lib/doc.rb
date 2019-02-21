@@ -17,4 +17,7 @@ class Doc
     @list.map { |key, value| [key, value.count] }.to_h
   end
 
+  def display_visits
+    Hash[count_visits.sort_by { |_key, value| value }.reverse]
+  end
 end

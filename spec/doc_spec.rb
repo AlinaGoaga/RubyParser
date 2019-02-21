@@ -24,4 +24,11 @@ describe Doc do
       expect(doc.count_visits).to eq('/help_page/1' => 2, '/contact' => 1, '/about' => 1, '/about/2' => 3)
     end
   end
+
+  describe '#display_visits' do
+    it 'displays the number of visits in descending order' do
+      doc.parse('./test.log')
+      expect(doc.display_visits).to eq('/about/2' => 3, '/help_page/1' => 2, '/contact' => 1, '/about' => 1)
+    end
+  end
 end
