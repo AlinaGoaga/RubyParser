@@ -19,4 +19,13 @@ class Log
   def display_visits
     Hash[count_visits.sort_by { |_key, value| value }.reverse]
   end
+
+  def count_unique_visits
+    @list.map { |key, value| [key, value.uniq.count] }.to_h
+  end
+
+  def display_unique_visits
+    Hash[count_unique_visits.sort_by { |_key, value| value }.reverse]
+  end
+
 end
