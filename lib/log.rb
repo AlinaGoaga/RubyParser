@@ -17,7 +17,8 @@ class Log
   end
 
   def display_visits
-    Hash[count_visits.sort_by { |_key, value| value }.reverse]
+    sorted = count_visits.sort_by { |_key, value| value }.reverse
+    sorted.map { |key, value| "#{key}: #{value} views" }
   end
 
   def count_unique_visits
@@ -25,7 +26,8 @@ class Log
   end
 
   def display_unique_visits
-    Hash[count_unique_visits.sort_by { |_key, value| value }.reverse]
+    sorted = count_unique_visits.sort_by { |_key, value| value }.reverse
+    sorted.map { |key, value| "#{key}: #{value} unique views" }
   end
 
 end
