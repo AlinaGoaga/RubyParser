@@ -13,13 +13,11 @@ class Log
   end
 
   def display_visits
-    sorted = count_visits.sort_by { |_key, value| value }.reverse
-    sorted.map { |key, value| "#{key}: #{value} views" }
+    sort_visits.map { |key, value| "#{key}: #{value} views" }
   end
 
   def display_unique_visits
-    sorted = count_unique_visits.sort_by { |_key, value| value }.reverse
-    sorted.map { |key, value| "#{key}: #{value} unique views" }
+    sort_unique_visits.map { |key, value| "#{key}: #{value} unique views" }
   end
 
 private
@@ -30,5 +28,13 @@ private
 
   def count_unique_visits
     @list.map { |key, value| [key, value.uniq.count] }.to_h
+  end
+
+  def sort_visits
+    count_visits.sort_by { |_key, value| -value }
+  end
+
+  def sort_unique_visits
+    count_unique_visits.sort_by { |_key, value| -value }
   end
 end
