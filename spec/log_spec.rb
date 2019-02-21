@@ -11,19 +11,6 @@ describe Log do
     end
   end
 
-  describe '#count_visits' do
-    it 'counts the number of visits' do
-      allow(parser_class_double).to receive(:new).and_return(parser_double)
-      allow(parser_double).to receive(:parse).and_return(
-        '/help_page/1' => ['126.318.035.038', '722.247.931.582'],
-        '/contact' => ['184.123.665.067'],
-        '/about' => ['061.945.150.735'],
-        '/about/2' => ['382.335.626.855', '802.683.925.780', '200.017.277.774'])
-      log.add_webpages
-      expect(log.count_visits).to eq('/help_page/1' => 2, '/contact' => 1, '/about' => 1, '/about/2' => 3)
-    end
-  end
-
   describe '#display_visits' do
     it 'displays the number of visits in descending order' do
       allow(parser_class_double).to receive(:new).and_return(parser_double)
@@ -33,20 +20,7 @@ describe Log do
         '/about' => ['061.945.150.735'],
         '/about/2' => ['382.335.626.855', '802.683.925.780', '200.017.277.774'])
       log.add_webpages
-      expect(log.display_visits).to eq('/about/2' => 3, '/help_page/1' => 2, '/contact' => 1, '/about' => 1)
-    end
-  end
-
-  describe '#count_unique_visits' do
-    it 'counts the number of unique visits' do
-      allow(parser_class_double).to receive(:new).and_return(parser_double)
-      allow(parser_double).to receive(:parse).and_return(
-        '/help_page/1' => ['126.318.035.038', '722.247.931.582', '126.318.035.038', '126.318.035.038'],
-        '/contact' => ['184.123.665.067', '184.123.665.067', '184.123.665.067'],
-        '/about' => ['061.945.150.735', '802.683.925.780'],
-        '/about/2' => ['382.335.626.855', '802.683.925.780', '200.017.277.774'])
-      log.add_webpages
-      expect(log.count_unique_visits).to eq('/help_page/1' => 2, '/contact' => 1, '/about' => 2, '/about/2' => 3)
+      expect(log.display_visits).to eq(["/about/2: 3 views", "/help_page/1: 2 views", "/about: 1 views", "/contact: 1 views"])
     end
   end
 
@@ -59,7 +33,7 @@ describe Log do
         '/about' => ['061.945.150.735', '802.683.925.780'],
         '/about/2' => ['382.335.626.855', '802.683.925.780', '200.017.277.774'])
       log.add_webpages
-      expect(log.display_unique_visits).to eq('/about/2' => 3, '/about' => 2, '/help_page/1' => 2, '/contact' => 1)
+      expect(log.display_unique_visits).to eq(["/about/2: 3 unique views", "/about: 2 unique views", "/help_page/1: 2 unique views", "/contact: 1 unique views"])
     end
   end
 

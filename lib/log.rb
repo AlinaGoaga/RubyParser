@@ -12,17 +12,9 @@ class Log
     @list = parser.parse(@document)
   end
 
-  def count_visits
-    @list.map { |key, value| [key, value.count] }.to_h
-  end
-
   def display_visits
     sorted = count_visits.sort_by { |_key, value| value }.reverse
     sorted.map { |key, value| "#{key}: #{value} views" }
-  end
-
-  def count_unique_visits
-    @list.map { |key, value| [key, value.uniq.count] }.to_h
   end
 
   def display_unique_visits
@@ -30,4 +22,13 @@ class Log
     sorted.map { |key, value| "#{key}: #{value} unique views" }
   end
 
+private
+
+  def count_visits
+    @list.map { |key, value| [key, value.count] }.to_h
+  end
+
+  def count_unique_visits
+    @list.map { |key, value| [key, value.uniq.count] }.to_h
+  end
 end
