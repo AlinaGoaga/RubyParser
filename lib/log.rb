@@ -13,11 +13,15 @@ class Log
   end
 
   def display_visits
-    sort_visits.map { |key, value| "#{key}: #{value} views" }
+    sort_visits.map { |key, value|
+      value > 1 ? "#{key}: #{value} views" : "#{key}: #{value} view"
+    }
   end
 
   def display_unique_visits
-    sort_unique_visits.map { |key, value| "#{key}: #{value} unique views" }
+    sort_unique_visits.map { |key, value|
+      value > 1 ? "#{key}: #{value} unique views" : "#{key}: #{value} unique view"
+    }
   end
 
 private
