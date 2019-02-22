@@ -44,6 +44,8 @@ to use
 - started to write code using a TDD approach
 - kept the approach simple by having everything in one class to start with and extracted the second class (Parser) later, once it became obvious that Log had too many responsibilities
 - the tests are making use of mocking and stubbing to ensure the classes are tested in isolation
-- I refactored as I went along to improve readability (this included renaming files and variables and restructuring the code)
+- I refactored as I went along to improve readability and maintainability (this included renaming files and variables and restructuring the code)
+- it also became apparent that there wouldn't be any need for some of the methods to be accessible from the outside so these were made private (counting and sorting)
 - as I built the code, I focused on functionality (the formatting was adjusted once this was achieved)
+- I kept on reviewing the tests and decided to add a few smaller ones at the end to make it easier to spot errors should the code break
 - the runner gives an easy way for the user to parse the file (ideally I'd like to go back to this and do some more research as to how to test command line instructions)
